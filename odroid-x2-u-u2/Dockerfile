@@ -9,11 +9,7 @@ ENV LC_ALL=en_US.UTF-8
 RUN rsync -av "rsync://rsync.at.gentoo.org/gentoo-portage/licenses/" "/usr/portage/licenses/" && \
 	ls /usr/portage/licenses -1 | xargs -0 > /etc/entropy/packages/license.accept && \
 	equo up && equo u && \
-  equo i app-admin/sudo net-misc/openssh net-misc/networkmanager \
-	app-misc/sabayon-live app-misc/sabayon-skel net-misc/ntp \
-	sys-apps/keyboard-configuration-helpers media-libs/raspberrypi-userland-0_pre20150921 \
-	sys-apps/systemd sys-kernel/raspberrypi-sources-3.10.1_pre-r20130719 app-misc/sabayon-version \
-  sys-process/vixie-cron && rm -rf /etc/entropy/packages/license.accept && echo -5 | equo conf update
+	rm -rf /etc/entropy/packages/license.accept && echo -5 | equo conf update
 
 RUN wget https://raw.githubusercontent.com/Hexxeh/rpi-update/master/rpi-update -O /usr/sbin/rpi-update && chmod +x /usr/sbin/rpi-update
 
