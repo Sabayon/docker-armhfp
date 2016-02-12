@@ -64,6 +64,7 @@ PACKAGES_TO_ADD=(
     "app-eselect/eselect-bzimage"
     "app-text/pastebunz"
     "app-admin/perl-cleaner"
+    "app-misc/sabayon-devkit"
     "sys-apps/grep"
     "sys-kernel/sabayon-sources"
     "app-misc/sabayon-version"
