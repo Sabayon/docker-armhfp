@@ -54,6 +54,7 @@ setup_desktop_environment() {
 setup_boot() {
     sd_enable sshd
     sd_enable ntpd
+    sd_enable ntpdate
     sd_enable vixie-cron
     sd_enable NetworkManager
     #eselect uimage set 1
