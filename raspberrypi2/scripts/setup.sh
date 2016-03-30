@@ -14,6 +14,8 @@ setup_rootfs_fstab() {
 }
 
 echo 'SUBSYSTEM=="vchiq",GROUP="video",MODE="0660"' > /etc/udev/rules.d/10-vchiq-permissions.rules
+eselect opengl set raspberrypi-userland
+
 rm -rfv /etc/fstab
 setup_bootfs_fstab "vfat"
 setup_rootfs_fstab
