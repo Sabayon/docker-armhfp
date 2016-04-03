@@ -90,4 +90,8 @@ setup_users() {
 setup_boot
 setup_users
 
+echo -5 | equo conf update
+equo cleanup
+
+
 exit 0
