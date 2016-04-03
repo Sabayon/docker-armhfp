@@ -19,7 +19,7 @@ RUN rsync -av "rsync://rsync.at.gentoo.org/gentoo-portage/licenses/" "/usr/porta
   sys-process/vixie-cron && \
 	rm -rf /etc/entropy/packages/license.accept && echo -5 | equo conf update
 # Cleanup and applying configs
-ADD ./script/setup.sh /setup.sh
+ADD ./scripts/setup.sh /setup.sh
 RUN chmod +x /setup.sh && /bin/bash /setup.sh && rm -rf /setup.sh
 
 # Set environment variables.
