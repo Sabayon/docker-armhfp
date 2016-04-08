@@ -54,9 +54,10 @@ setup_desktop_environment() {
 setup_boot() {
     sd_enable sshd
     # Let's use systemd for ntp features
-    timedatectl set-ntp true
+    #timedatectl set-ntp true
 #    sd_enable ntpd
 #    sd_enable ntpdate
+    sd_enable systemd-timesyncd
     sd_enable vixie-cron
     sd_enable NetworkManager
     #eselect uimage set 1
