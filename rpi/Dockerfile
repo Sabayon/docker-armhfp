@@ -18,7 +18,8 @@ RUN wget https://raw.githubusercontent.com/Hexxeh/rpi-update/master/rpi-update -
 ADD ./scripts/setup.sh /setup.sh
 RUN /bin/bash /setup.sh  && rm -rf /setup.sh
 
-ADD ./rpi3_wifi.tar /lib/firmware
+RUN mkdir -p /lib/firmware
+ADD ./rpi3_wifi.tar /lib/firmware/
 
 # Set environment variables.
 ENV HOME /root

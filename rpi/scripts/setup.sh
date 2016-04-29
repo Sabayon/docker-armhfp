@@ -20,6 +20,6 @@ rm -rfv /etc/fstab
 setup_bootfs_fstab "vfat"
 setup_rootfs_fstab
 
-SKIP_BACKUP=1 /usr/sbin/rpi-update
+echo "y" | SKIP_BACKUP=1 /usr/sbin/rpi-update
 
 exit 0
