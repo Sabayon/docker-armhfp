@@ -10,7 +10,7 @@ RUN rsync -av "rsync://rsync.at.gentoo.org/gentoo-portage/licenses/" "/usr/porta
 	ls /usr/portage/licenses -1 | xargs -0 > /etc/entropy/packages/license.accept && \
 	equo up && equo u && \
 	equo i kodi-raspberrypi app-misc/sabayon-auto-updater && \
-	echo -5 | equo conf update
+	echo -5 | equo conf update && equo cleanup
 
 RUN systemctl enable kodi-raspberrypi && systemctl enable sabayon-auto-updater.timer
 
