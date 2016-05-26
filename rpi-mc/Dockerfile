@@ -13,7 +13,7 @@ RUN rsync -av "rsync://rsync.at.gentoo.org/gentoo-portage/licenses/" "/usr/porta
 	echo -5 | equo conf update && equo cleanup
 
 RUN systemctl enable kodi-raspberrypi && systemctl enable sabayon-auto-updater.timer
-
+ADD ./config.txt /boot/config.txt
 # Set environment variables.
 ENV HOME /root
 
