@@ -1,0 +1,28 @@
+# Control starts from sdb, ignoring system one
+KERNEL!="sd[b-z]*", GOTO="my_media_automount_end"
+ACTION=="add", PROGRAM!="/sbin/blkid %N", GOTO="my_media_automount_end"
+
+IMPORT{program}="/sbin/blkid -o udev -p %N"
+
+# detect label or create one
+ENV{ID_FS_LABEL}!="", ENV{dir_name}="%E{ID_FS_LABEL}"
+ENV{ID_FS_LABEL}=="", ENV{dir_name}="usbhd-%k"
+
+# make the dirs in /media
+ACTION=="add", RUN+="/bin/mkdir -p '/media/%E{dir_name}'"
+
+# mount options
+ACTION=="add", ENV{mount_options}="relatime"
+# ntfs vfat specific options
+ACTION=="add", ENV{ID_FS_TYPE}=="vfat|ntfs", ENV{mount_options}="$env{mount_options},gid=100,dmask=000,fmask=111,utf8"
+
+# use ntfs-3g to mount ntfs filesystems
+ACTION=="add", ENV{ID_FS_TYPE}=="ntfs", RUN+="/bin/mount -t ntfs-3g -o %E{mount_options} /dev/%k '/media/%E{dir_name}'"
+# automatic mount for others
+ACTION=="add", ENV{ID_FS_TYPE}!="ntfs", RUN+="/bin/mount -t auto -o %E{mount_options} /dev/%k '/media/%E{dir_name}'"
+
+# cleanup on remove
+ACTION=="remove", ENV{dir_name}!="", RUN+="/bin/umount -l '/media/%E{dir_name}'", RUN+="/bin/rmdir '/media/%E{dir_name}'"
+
+# exit
+LABEL="my_media_automount_end"
