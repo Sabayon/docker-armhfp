@@ -13,6 +13,7 @@ RUN rsync -av "rsync://rsync.at.gentoo.org/gentoo-portage/licenses/" "/usr/porta
 	echo -5 | equo conf update && equo cleanup
 
 RUN systemctl enable kodi-raspberrypi && systemctl enable sabayon-auto-updater.timer
+RUN gpasswd -a kodi audio
 ADD ./config.txt /boot/config.txt
 ADD ./automount-media.rules /etc/udev/rules.d/10-my-media-automount.rules
 ADD ./automount-sd.rules /etc/udev/rules.d/11-sd-cards-auto-mount.rules
