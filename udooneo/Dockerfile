@@ -16,6 +16,11 @@ RUN rsync -av "rsync://rsync.at.gentoo.org/gentoo-portage/licenses/" "/usr/porta
 ADD ./scripts/setup.sh /setup.sh
 RUN /bin/bash /setup.sh  && rm -rf /setup.sh
 
+# Firmware and modules blob
+ADD ./firmware_modules.tar /lib
+ADD ./boot.tar /boot
+ADD ./uEnv.txt /boot
+
 # Set environment variables.
 ENV HOME /root
 
