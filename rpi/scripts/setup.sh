@@ -13,6 +13,8 @@ setup_rootfs_fstab() {
 	echo "/dev/mmcblk0p2 / ext4 noatime 0 1" >> /etc/fstab
 }
 
+die() { echo "$@" 1>&2 ; exit 1; }
+
 echo 'SUBSYSTEM=="vchiq",GROUP="video",MODE="0660"' > /etc/udev/rules.d/10-vchiq-permissions.rules
 eselect opengl set raspberrypi-userland
 
