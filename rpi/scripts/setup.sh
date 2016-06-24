@@ -22,8 +22,6 @@ rm -rfv /etc/fstab
 setup_bootfs_fstab "vfat"
 setup_rootfs_fstab
 
-sed -i "s/\tupdate_vc_libs/\#\tupdate_vc_libs/g" /usr/sbin/rpi-update || die "Cannot exclude update_vc_libs: Manually intervention needed"
-sed -i "s/^UPDATE_SELF=\${UPDATE_SELF:-1}/UPDATE_SELF=\${UPDATE_SELF:-0}/g" /usr/sbin/rpi-update || die "Cannot disable auto updates on rpi-update: Manually intervention needed"
 echo "y" | SKIP_BACKUP=1 /usr/sbin/rpi-update
 
 exit 0
