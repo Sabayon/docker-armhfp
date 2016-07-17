@@ -11,8 +11,8 @@ RUN mv /etc/entropy/repositories.conf.d/entropy_sabayonlinux.org.example /etc/en
 
 RUN rsync -av "rsync://rsync.at.gentoo.org/gentoo-portage/licenses/" "/usr/portage/licenses/" && \
 	ls /usr/portage/licenses -1 | xargs -0 > /etc/entropy/packages/license.accept && \
-	equo rescue spmsync &&  equo up && equo u && \
-  equo i app-admin/sudo net-misc/openssh net-misc/networkmanager \
+	equo rescue spmsync &&  equo up && equo u --multifetch=10 && \
+  equo i --multifetch=10 app-admin/sudo net-misc/openssh net-misc/networkmanager \
 	app-misc/sabayon-live app-misc/sabayon-skel net-misc/ntp \
 	sys-apps/keyboard-configuration-helpers \
 	sys-apps/systemd app-misc/sabayon-version \
