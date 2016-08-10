@@ -22,7 +22,8 @@ echo "arm" >> /etc/entropy/packages/package.keywords
 ACCEPT_LICENSE=* equo up && equo u
 
 # Networkmanager gives issues on aarch64
-equo rm networkmanager
+systemctl disable NetworkManager
+equo rm net-misc/networkmanager
 ACCEPT_LICENSE=* equo i net-misc/dhcpcd
 systemctl enable dhcpcd
 
