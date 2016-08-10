@@ -24,8 +24,15 @@ ACCEPT_LICENSE=* equo up && equo u
 # Networkmanager gives issues on aarch64
 systemctl disable NetworkManager
 equo rm net-misc/networkmanager
-ACCEPT_LICENSE=* equo i net-misc/dhcpcd
-systemctl enable dhcpcd
+cat > /etc/systemd/network/default_dhcp.network << "EOF"
+[Network]
+DHCP=ipv4
+
+[DHCP]
+UseDomains=true
+EOF
+
+systemctl enable systemd-networkd
 
 # Cleanup
 equo cleanup
