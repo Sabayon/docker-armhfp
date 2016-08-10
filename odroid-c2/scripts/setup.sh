@@ -17,4 +17,7 @@ rm -rfv /etc/fstab
 #setup_bootfs_fstab "vfat"
 setup_rootfs_fstab
 
+# Force armv7l entropy architecture (kernel is 64bit)
+echo "armv7l" > /etc/entropy/.arch"
+
 exit 0
