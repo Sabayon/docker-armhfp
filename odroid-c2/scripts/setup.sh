@@ -13,11 +13,16 @@ setup_rootfs_fstab() {
 	echo "/dev/mmcblk0p2 / ext4 noatime 0 1" >> /etc/fstab
 }
 
-rm -rfv /etc/fstab
-#setup_bootfs_fstab "vfat"
-setup_rootfs_fstab
-
 # Force armv7l entropy architecture (kernel is 64bit)
-echo "armv7l" > /etc/entropy/.arch"
+echo "armv7l" > /etc/entropy/.arch
+
+# Perform package upgrades
+ACCEPT_LICENSE=* equo up && equo u && equo cleanup 
+
+# Accepts configuration updates
+echo -5 | equo conf update
+
+rm -rfv /etc/fstab
+setup_rootfs_fstab
 
 exit 0
