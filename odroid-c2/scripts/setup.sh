@@ -15,9 +15,19 @@ setup_rootfs_fstab() {
 
 # Force armv7l entropy architecture (kernel is 64bit)
 echo "armv7l" > /etc/entropy/.arch
+echo "~arm" > /etc/entropy/packages/package.keywords
+echo "arm" >> /etc/entropy/packages/package.keywords
 
 # Perform package upgrades
-ACCEPT_LICENSE=* equo up && equo u && equo cleanup 
+ACCEPT_LICENSE=* equo up && equo u
+
+# Networkmanager gives issues on aarch64
+equo rm networkmanager
+equo i net-misc/dhcpcd
+systemctl enable dhcpcd
+
+# Cleanup
+equo cleanup
 
 # Accepts configuration updates
 echo -5 | equo conf update
