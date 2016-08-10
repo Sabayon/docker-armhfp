@@ -23,7 +23,7 @@ ACCEPT_LICENSE=* equo up && equo u
 
 # Networkmanager gives issues on aarch64
 equo rm networkmanager
-equo i net-misc/dhcpcd
+ACCEPT_LICENSE=* equo i net-misc/dhcpcd
 systemctl enable dhcpcd
 
 # Cleanup
