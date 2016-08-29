@@ -103,6 +103,9 @@ setup_users() {
     ) || return 1
 }
 
+mv /etc/entropy/repositories.conf.d/entropy_sabayonlinux.org.example /etc/entropy/repositories.conf.d/entropy_sabayonlinux.org
+/usr/bin/equo up 
+
 # Be sure to have this on the image, always.
 /usr/bin/equo u --multifetch=1
 /usr/bin/equo i --multifetch=1 "${PACKAGES_TO_ADD[@]}"
