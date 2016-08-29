@@ -88,6 +88,9 @@ setup_users() {
     ) || return 1
 }
 
+# Be sure to have this on the image, always.
+/usr/bin/equo install app-crypt/gnupg sys-process/procps net-misc/networkmanager
+
 setup_boot
 setup_users
 
