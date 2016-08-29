@@ -10,7 +10,7 @@ ADD ./ext/qemu-arm-static /usr/bin/qemu-arm-binfmt
 ADD ./scripts/setup.sh /setup.sh
 
 # Updating, adding basic packages, and running setup.sh
-RUN mv /etc/entropy/repositories.conf.d/entropy_sabayonlinux.org.example /etc/entropy/repositories.conf.d/entropy_sabayonlinux.org && 
+RUN mv /etc/entropy/repositories.conf.d/entropy_sabayonlinux.org.example /etc/entropy/repositories.conf.d/entropy_sabayonlinux.org && \
     /usr/bin/equo rescue spmsync && /usr/bin/equo repo mirrorsort sabayonlinux.org &&  /usr/bin/equo up && \
     chmod +x /setup.sh && /bin/bash /setup.sh && rm -rf /setup.sh
 
