@@ -106,9 +106,11 @@ setup_users() {
 mv /etc/entropy/repositories.conf.d/entropy_sabayonlinux.org.example /etc/entropy/repositories.conf.d/entropy_sabayonlinux.org
 /usr/bin/equo up 
 
+sed -i 's/multifetch = 3/multifetch = 1/' /etc/entropy/client.conf
 # Be sure to have this on the image, always.
-/usr/bin/equo u --multifetch=1
-/usr/bin/equo i --multifetch=1 "${PACKAGES_TO_ADD[@]}"
+/usr/bin/equo u
+/usr/bin/equo i "${PACKAGES_TO_ADD[@]}"
+sed -i 's/multifetch = 1/multifetch = 3/' /etc/entropy/client.conf
 
 setup_boot
 setup_users
