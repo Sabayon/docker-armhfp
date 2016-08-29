@@ -3,6 +3,21 @@
 /usr/sbin/env-update
 . /etc/profile
 
+PACKAGES_TO_ADD=(
+    "app-admin/sudo" 
+    "net-misc/openssh" 
+    "app-misc/sabayon-live"
+    "app-misc/sabayon-skel"
+    "net-misc/ntp"
+    "sys-apps/keyboard-configuration-helpers"
+    "sys-apps/systemd"
+    "app-misc/sabayon-version"
+    "net-misc/networkmanager"
+    "sys-process/vixie-cron"
+    "app-crypt/gnupg"
+    "sys-process/procps"
+)
+
 sd_enable() {
     local srv="${1}"
     local ext=".${2:-service}"
@@ -90,10 +105,7 @@ setup_users() {
 
 # Be sure to have this on the image, always.
 /usr/bin/equo u --multifetch=1
-/usr/bin/equo i --multifetch=1 app-admin/sudo net-misc/openssh app-misc/sabayon-live \
-    app-misc/sabayon-skel net-misc/ntp sys-apps/keyboard-configuration-helpers \ 
-    sys-apps/systemd app-misc/sabayon-version net-misc/networkmanager\
-    sys-process/vixie-cron app-crypt/gnupg sys-process/procps 
+/usr/bin/equo i --multifetch=1 "${PACKAGES_TO_ADD[@]}"
 
 setup_boot
 setup_users
