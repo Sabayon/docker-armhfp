@@ -110,6 +110,8 @@ sed -i 's/multifetch = 3/#multifetch = 3/' /etc/entropy/client.conf
 /usr/bin/equo up 
 
 # Be sure to have this on the image, always.
+/usr/bin/equo i sys-apps/entropy app-admin/equo
+
 /usr/bin/equo u
 /usr/bin/equo i "${PACKAGES_TO_ADD[@]}"
 
