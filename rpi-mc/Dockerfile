@@ -6,11 +6,11 @@ MAINTAINER mudler <mudler@sabayonlinux.org>
 ENV LC_ALL=en_US.UTF-8
 
 # Installing packages without questions
-RUN rsync -av "rsync://rsync.at.gentoo.org/gentoo-portage/licenses/" "/usr/portage/licenses/" && \
+RUN rsync -av "rsync://rsync.at.gentoo.org/gentoo-portage/licenses/" "/usr/portage/licenses/" && sed -i 's/multifetch = 3/#multifetch = 3/' /etc/entropy/client.conf \
 	ls /usr/portage/licenses -1 | xargs -0 > /etc/entropy/packages/license.accept && \
 	equo up && equo u && \
 	equo i --multifetch=10 kodi-raspberrypi app-misc/sabayon-auto-updater && \
-	echo -5 | equo conf update && equo cleanup
+	echo -5 | equo conf update && equo cleanup && sed -i 's/#multifetch = 3/multifetch = 3/' /etc/entropy/client.conf
 
 RUN systemctl enable kodi-raspberrypi && systemctl enable sabayon-auto-updater.timer
 RUN gpasswd -a kodi audio
