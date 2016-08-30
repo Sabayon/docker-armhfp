@@ -11,7 +11,7 @@ RUN /bin/bash /setup.sh  && rm -rf /setup.sh
 
 # Firmware and modules blob
 ADD ./firmware_modules.tar /
-ADD ./boot.tar /boot
+ADD ./boot.tar /
 # Set environment variables.
 ENV HOME /root
 

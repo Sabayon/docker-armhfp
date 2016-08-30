@@ -15,8 +15,6 @@ setup_rootfs_fstab() {
 	echo "/dev/mmcblk0p2 / ext4 noatime 0 1" >> /etc/fstab
 }
 
-# Force armv7l entropy architecture (kernel is 64bit)
-echo "armv7l" > /etc/entropy/.arch
 echo "~arm" > /etc/entropy/packages/package.keywords
 echo "arm" >> /etc/entropy/packages/package.keywords
 
