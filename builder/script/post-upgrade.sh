@@ -104,7 +104,8 @@ echo -5 | equo conf update
 
 pushd /opt/sabayon-build/
 
-git pull
+git fetch --all
+git reset --hard origin/master
 
 popd
 
