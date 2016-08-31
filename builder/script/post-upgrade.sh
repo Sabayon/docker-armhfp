@@ -62,6 +62,7 @@ FILES_TO_REMOVE=(
 
 PACKAGES_TO_ADD=(
     "app-eselect/eselect-bzimage"
+    "app-misc/sabayon-devkit"
     "app-text/pastebunz"
     "app-admin/perl-cleaner"
     "app-misc/sabayon-devkit"
