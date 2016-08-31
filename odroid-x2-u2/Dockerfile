@@ -4,12 +4,11 @@ MAINTAINER mudler <mudler@sabayonlinux.org>
 
 # Set locales to en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
+ENV ACCEPT_LICENSE=*
 
 # Installing packages without questions
-RUN rsync -av "rsync://rsync.at.gentoo.org/gentoo-portage/licenses/" "/usr/portage/licenses/" && \
-	ls /usr/portage/licenses -1 | xargs -0 > /etc/entropy/packages/license.accept && \
-	equo up && equo u && equo cleanup \
-	rm -rf /etc/entropy/packages/license.accept && echo -5 | equo conf update
+RUN equo up && equo u && equo cleanup && \
+    echo -5 | equo conf update
 
 # Perform post-upgrade tasks (mirror sorting, updating repository db)
 ADD ./scripts/setup.sh /setup.sh
