@@ -10,8 +10,7 @@ git stash
 git pull
 popd
 
-equo i base-gcc
+equo up && equo u && equo i distcc gcc base-gcc
+echo -5 | equo conf update
 equo cleanup
 sed -i 's/#multifetch = 3/multifetch = 3/' /etc/entropy/client.conf
-
-exit 0
