@@ -4,6 +4,7 @@ MAINTAINER mudler <mudler@sabayonlinux.org>
 
 # Set locales to en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
+ENV ACCEPT_LICENSE=*
 
 # Perform post-upgrade tasks (mirror sorting, updating repository db)
 ADD ./script/post-upgrade.sh /post-upgrade.sh

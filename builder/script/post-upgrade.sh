@@ -80,6 +80,7 @@ PACKAGES_TO_ADD=(
     "net-misc/openssh"
     "sys-devel/automake"
 )
+sed -i 's/multifetch = 3/#multifetch = 3/' /etc/entropy/client.conf
 
 rsync -av -H -A -X --delete-during "rsync://rsync.at.gentoo.org/gentoo-portage/licenses/" "/usr/portage/licenses/"
 ls /usr/portage/licenses -1 | xargs -0 > /etc/entropy/packages/license.accept
@@ -134,6 +135,8 @@ rm -f /etc/openldap/ssl/ldap.pem /etc/openldap/ssl/ldap.key \
 
 # Remove scripts
 rm -rf /post-upgrade.sh
+
+sed -i 's/#multifetch = 3/multifetch = 3/' /etc/entropy/client.conf
 
 # Cleanup
 rm -rf "${FILES_TO_REMOVE[@]}"
