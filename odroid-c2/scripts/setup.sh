@@ -13,7 +13,7 @@ echo "~arm" > /etc/entropy/packages/package.keywords
 echo "arm" >> /etc/entropy/packages/package.keywords
 
 # Perform package upgrades
-ACCEPT_LICENSE=* equo up && equo u
+#ACCEPT_LICENSE=* equo up && equo u
 
 # Networkmanager gives issues on aarch64
 systemctl disable NetworkManager
