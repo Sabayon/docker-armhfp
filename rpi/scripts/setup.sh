@@ -2,6 +2,7 @@
 
 /usr/sbin/env-update
 . /etc/profile
+export ACCEPT_LICENSE=*
 
 setup_bootfs_fstab() {
 	# add /dev/mmcblk0p1 to /etc/fstab
@@ -14,6 +15,15 @@ setup_rootfs_fstab() {
 }
 
 die() { echo "$@" 1>&2 ; exit 1; }
+
+sed -i 's/multifetch = 3/#multifetch = 3/' /etc/entropy/client.conf
+/usr/bin/equo repo mirrorsort sabayonlinux.org
+/usr/bin/equo up 
+# Be sure to have this on the image, always.
+/usr/bin/equo i media-libs/raspberrypi-userland app-admin/rpi-update 
+/usr/bin/equo u
+echo -5 | equo conf update && equo cleanup
+sed -i 's/#multifetch = 3/multifetch = 3/' /etc/entropy/client.conf
 
 echo 'SUBSYSTEM=="vchiq",GROUP="video",MODE="0660"' > /etc/udev/rules.d/10-vchiq-permissions.rules
 eselect opengl set raspberrypi-userland
