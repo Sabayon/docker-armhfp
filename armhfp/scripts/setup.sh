@@ -119,6 +119,11 @@ sed -i 's/#multifetch = 3/multifetch = 3/' /etc/entropy/client.conf
 setup_boot
 setup_users
 
+# Clean layman dir
+rm -rf /var/lib/layman/* /etc/portage/repos.conf/layman.conf
+# Needed
+touch /var/lib/layman/make.conf 
+
 echo -5 | equo conf update
 equo cleanup
 
