@@ -31,6 +31,9 @@ EOF
 
 systemctl enable systemd-networkd
 
+# Insert in blacklist evbug kernel module
+echo "blacklist evbug" >> /etc/modprobe.d/blacklist
+
 # Cleanup
 equo cleanup
 
