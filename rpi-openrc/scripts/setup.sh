@@ -18,9 +18,13 @@ if [ -n "${UPGRADE_REPO}" ]; then
 	ETP_NONINTERACTIVE=1 equo upgrade --purge
 	echo "-5" | equo conf update
 fi
-# Be sure to have this on the image, always.
-/usr/bin/equo i sys-apps/sysvinit sys-apps/openrc
-/usr/bin/equo mask sys-apps/systemd-sysv-utils app-misc/sabayon-version
+# Prepare the rootfs
+/usr/bin/equo i sys-apps/sysvinit sys-apps/openrc sys-fs/udev sys-fs/udev-init-scripts
+/usr/bin/equo mask sys-apps/systemd-sysv-utils app-misc/sabayon-version sys-apps/systemd
+
+rc-update add ntpd
+rc-update add NetworkManager
+rc-update add sshd
 
 echo -5 | equo conf update && equo cleanup
 sed -i 's/#multifetch = 3/multifetch = 3/' /etc/entropy/client.conf
