@@ -19,9 +19,11 @@ if [ -n "${UPGRADE_REPO}" ]; then
 	echo "-5" | equo conf update
 fi
 # Prepare the rootfs
-/usr/bin/equo i sys-apps/sysvinit sys-apps/openrc sys-fs/udev sys-fs/udev-init-scripts
-/usr/bin/equo mask sys-apps/systemd-sysv-utils app-misc/sabayon-version sys-apps/systemd
+/usr/bin/equo i sys-apps/sysvinit sys-apps/openrc
+/usr/bin/equo mask sys-apps/systemd-sysv-utils app-misc/sabayon-version
 
+# /usr/bin/equo i sys-fs/udev sys-fs/udev-init-scripts
+# /usr/bin/equo mask sys-apps/systemd
 rc-update add ntpd
 rc-update add NetworkManager
 rc-update add sshd
