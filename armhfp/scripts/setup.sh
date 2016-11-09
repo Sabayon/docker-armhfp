@@ -115,7 +115,7 @@ sed -i 's/multifetch = 3/#multifetch = 3/' /etc/entropy/client.conf
 /usr/bin/equo u
 /usr/bin/equo i "${PACKAGES_TO_ADD[@]}"
 
-sed -i 's/#multifetch = 3/multifetch = 3/' /etc/entropy/client.conf
+#sed -i 's/#multifetch = 3/multifetch = 3/' /etc/entropy/client.conf
 setup_boot
 setup_users
 
