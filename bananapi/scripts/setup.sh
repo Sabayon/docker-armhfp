@@ -15,8 +15,13 @@ setup_rootfs_fstab() {
 	echo "/dev/mmcblk0p2 / ext4 noatime 0 1" >> /etc/fstab
 }
 
+
 # Perform package upgrades
+sed -i 's/multifetch = 3/#multifetch = 3/' /etc/entropy/client.conf
+
 ACCEPT_LICENSE=* equo up && equo u
+
+sed -i 's/#multifetch = 3/multifetch = 3/' /etc/entropy/client.conf
 
 # Networkmanager gives issues on aarch64
 systemctl disable NetworkManager
