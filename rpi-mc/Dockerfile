@@ -12,9 +12,10 @@ RUN sed -i 's/multifetch = 3/#multifetch = 3/' /etc/entropy/client.conf && \
 	equo i kodi-raspberrypi app-misc/sabayon-auto-updater && \
 	echo -5 | equo conf update && equo cleanup && sed -i 's/#multifetch = 3/multifetch = 3/' /etc/entropy/client.conf
 
-RUN systemctl enable kodi-raspberrypi && systemctl enable sabayon-auto-updater.timer
+RUN systemctl enable kodi-raspberrypi && systemctl enable sabayon-auto-updater.timer && systemctl disable getty@tty1
 RUN gpasswd -a kodi audio
 ADD ./config.txt /boot/config.txt
+RUN echo 'root=/dev/mmcblk0p2 rootfstype=ext4 rootwait consoleblank=0 loglevel=1 quiet logo.nologo' > /boot/cmdline.txt
 # Set environment variables.
 ENV HOME /root
 
