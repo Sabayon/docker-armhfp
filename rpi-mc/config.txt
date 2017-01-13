@@ -32,3 +32,5 @@ gpu_mem_1024=256
 
 # set to 'force_turbo=1' to disable dynamic overclocking (you can lose your warranty!)
 force_turbo=0
+disable_splash=1
+avoid_warnings=1
