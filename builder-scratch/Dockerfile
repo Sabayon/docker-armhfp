@@ -8,11 +8,11 @@ LABEL maintainer="mudler <mudler@sabayonlinux.org>"
 ENV LC_ALL=en_US.UTF-8
 
 # Supporting crossbuilding with binfmt
-ADD ext/qemu-arm-static /usr/bin/qemu-arm-binfmt
+ADD ./ext/qemu-arm-static /usr/bin/qemu-arm-binfmt
 
 ADD ./scripts/ /sabayon
 
-RUN chmod a+x /sabayon/build.sh && /sabayon/build.sh init &&
+RUN chmod a+x /sabayon/build.sh && /sabayon/build.sh init && \
   /sabayon/build.sh build
 
 ADD ./scripts/depcheck /usr/local/bin/depcheck
