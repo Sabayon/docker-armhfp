@@ -86,7 +86,7 @@ init () {
   sabayon_create_reposfile
 }
 
-build () {
+build_gcc () {
   export ACCEPT_LICENSE='*'
   export SAB_EMERGE_OPTS='-j --with-bdeps=y'
 
@@ -142,6 +142,9 @@ build () {
 
   gcc-config ${sabayon_gcc}
   . /etc/profile
+}
+
+build_system () {
 
   # Force use of py3.6
   eselect python set python3.6
@@ -190,8 +193,11 @@ case $1 in
   init)
     init
     ;;
-  build)
-    build
+  build_gcc)
+    build_gcc
+    ;;
+  build_system)
+    build_system
     ;;
   *)
   echo "Use init|build"

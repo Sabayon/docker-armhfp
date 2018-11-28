@@ -13,7 +13,9 @@ ADD ./ext/qemu-arm-static /usr/bin/qemu-arm-binfmt
 ADD ./scripts/ /sabayon
 
 RUN chmod a+x /sabayon/build.sh && /sabayon/build.sh init && \
-  /sabayon/build.sh build
+  /sabayon/build.sh build_gcc
+
+RUN /sabayon/build.sh build_system
 
 ADD ./scripts/depcheck /usr/local/bin/depcheck
 
