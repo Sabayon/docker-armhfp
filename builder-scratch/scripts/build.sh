@@ -31,12 +31,22 @@ FILES_TO_REMOVE=(
   "/usr/portage/licenses"
 )
 
-sabayon_clean_makeconf () {
+# Docker build command doesn't support caps (why????)
+# so we need disable sandbox to avoid errors:
+# ptrace(PTRACE_TRACEME, ..., 0x0000000000000000, 0x0000000000000000): Operation not permitted
+SABAYON_ENTRA_ENV=(
+  "dev-libs/gobject-introspection no-sandbox.conf"
 
+  "sys-apps/sandbox no-sandbox.conf"
+
+  # SYS_PTRACE problem"
+  "sys-libs/ncurses no-sandbox.conf"
+)
+
+sabayon_clean_makeconf () {
   sed -i -e 's:^PYTHON_.*::g' ${MAKE_PORTAGE_FILE}
   sed -i -e 's:^CFLAGS.*::g' ${MAKE_PORTAGE_FILE}
   sed -i -e 's:^CXXFLAGS.*::g' ${MAKE_PORTAGE_FILE}
-
 }
 
 sabayon_stage3_init_equo () {
@@ -84,6 +94,14 @@ init () {
   sabayon_mask_upstream_pkgs
 
   sabayon_create_reposfile
+
+  [ ! -e /etc/portage/env/no-sandbox.conf ] && \
+    echo 'FEATURES="-sandbox -usersandbox"' > /etc/portage/env/no-sandbox.conf
+
+  for ((i = 0 ; i < ${#SABAYON_EXTRA_ENV[@]} ; i++)) ; do
+    echo -e ${SABAYON_EXTRA_ENV[${i}]} >> \
+      /etc/portage/package.env/01-sabayon.package.env
+  done
 }
 
 build_gcc () {

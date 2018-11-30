@@ -56,10 +56,13 @@ sabayon_check_etc_portage () {
     mkdir -p /etc/portage/package.unmask
   fi
 
-  if [[ ! -d /etc/portage/package.keywords ]] ; then
-    mkdir -p /etc/portage/package.keywords
+  if [[ ! -d /etc/portage/package.env ]] ; then
+    mkdir -p /etc/portage/package.env
   fi
 
+  if [[ ! -d /etc/portage/env ]] ; then
+    mkdir -p /etc/portage/env
+  fi
   return 0
 }
 
