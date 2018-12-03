@@ -10,8 +10,7 @@ RUN echo "en_US.UTF-8 UTF-8 " >> /etc/locale.gen &&  locale-gen &&  eselect loca
 ENV LC_ALL=en_US.UTF-8
 
 # Upgrading portage and installing necessary packages
-RUN rm -rf '/usr/portage/metadata/timestamp.chk' && \
-	 emerge --sync --quiet && \
+RUN emerge-webrsync && \
 	layman -S && layman -a sabayon && layman -a sabayon-distro
 
 # Configure the sabayon box, installing equo setting up locales
