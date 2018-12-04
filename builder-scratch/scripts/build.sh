@@ -34,10 +34,12 @@ FILES_TO_REMOVE=(
 # Docker build command doesn't support caps (why????)
 # so we need disable sandbox to avoid errors:
 # ptrace(PTRACE_TRACEME, ..., 0x0000000000000000, 0x0000000000000000): Operation not permitted
-SABAYON_ENTRA_ENV=(
+SABAYON_EXTRA_ENV=(
   "dev-libs/gobject-introspection no-sandbox.conf"
 
   "sys-apps/sandbox no-sandbox.conf"
+
+  "dev-lang/go no-sandbox.conf"
 
   # SYS_PTRACE problem"
   "sys-libs/ncurses no-sandbox.conf"
@@ -102,6 +104,8 @@ init () {
     echo -e ${SABAYON_EXTRA_ENV[${i}]} >> \
       /etc/portage/package.env/01-sabayon.package.env
   done
+
+  cat /etc/portage/package.env/01-sabayon.package.env || true
 }
 
 build_gcc () {
