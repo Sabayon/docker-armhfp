@@ -38,6 +38,7 @@ SABAYON_EXTRA_ENV=(
   "dev-libs/gobject-introspection no-sandbox.conf"
 
   "sys-apps/sandbox no-sandbox.conf"
+  "sys-libs/glibc no-sandbox.conf"
 
   "dev-lang/go no-sandbox.conf"
 
