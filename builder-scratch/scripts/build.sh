@@ -188,7 +188,9 @@ build_system () {
   emerge --newuse --deep --with-bdeps=y -j @system --buildpkg
 
   emerge ${SAB_EMERGE_OPTS} @preserved-rebuild -b -j
+}
 
+build_sabayon_stuff () {
   emerge sys-apps/entropy-server sys-apps/entropy app-admin/equo dev-tcltk/expect \
     dev-vcs/git dev-python/requests -j
 
@@ -221,6 +223,9 @@ case $1 in
     ;;
   build_system)
     build_system
+    ;;
+  build_sabayon_stuff)
+    build_sabayon_stuff
     ;;
   *)
   echo "Use init|build"

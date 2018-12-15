@@ -17,6 +17,8 @@ RUN chmod a+x /sabayon/build.sh && /sabayon/build.sh init && \
 
 RUN /sabayon/build.sh build_system
 
+RUN /sabayon/build.sh build_sabayon_stuff
+
 ADD ./scripts/depcheck /usr/local/bin/depcheck
 
 # Set environment variables.
