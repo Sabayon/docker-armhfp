@@ -41,6 +41,7 @@ SABAYON_EXTRA_ENV=(
   "sys-libs/glibc no-sandbox.conf"
 
   "dev-lang/go no-sandbox.conf"
+  "dev-go/go-md2man no-sandbox.conf"
 
   # SYS_PTRACE problem"
   "sys-libs/ncurses no-sandbox.conf"
@@ -110,9 +111,6 @@ init () {
 }
 
 build_gcc () {
-  export ACCEPT_LICENSE='*'
-  export SAB_EMERGE_OPTS='-j --with-bdeps=y'
-
   for ((i = 0 ; i < ${#SABAYON_EXTRA_MASK[@]} ; i++)) ; do
     echo ${SABAYON_EXTRA_MASK[${i}]} >> \
       /etc/portage/package.mask/00-sabayon.package.mask
@@ -213,6 +211,8 @@ build_sabayon_stuff () {
   rm -rf "${FILES_TO_REMOVE[@]}"
 }
 
+export ACCEPT_LICENSE='*'
+export SAB_EMERGE_OPTS='-j --with-bdeps=y'
 
 case $1 in
   init)
